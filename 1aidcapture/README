@@ -1,0 +1,11 @@
+Id konventioner
+
+----
+
+PATRULJE_ID : 1\d{2}
+SJAK_ID     : 2\d{2}
+FANGE_KODE  : PATRULJE_ID + \d{5}
+TING_ID     : 3\d{d}
+TING_KODE   : TING_ID + \d{5}
+
+----

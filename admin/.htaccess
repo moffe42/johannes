@@ -1,0 +1,4 @@
+AuthUserFile /var/services/web/apo14/admin/.htpasswd
+AuthType Basic
+AuthName "Apo Admin"
+Require valid-user
