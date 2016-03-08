@@ -1,4 +1,5 @@
 <?php
+die('dd');
 // Include config
 require_once('../config/config.php');
 try {
@@ -14,7 +15,7 @@ try {
 	// Grab sjak info
 	$stmt = $dbh->prepare('SELECT day(time) as day, hour(time) AS hour, count(*)
 	        AS `count` FROM objectlog WHERE used = 1 AND DATE(time) IN
-	        ("2014-03-21","2014-03-22", "2014-03-23") GROUP BY day(time), hour(`time`);');
+	        ("2015-03-20","2015-03-21", "2015-03-22") GROUP BY day(time), hour(`time`);');
 	$stmt->execute();
 	$rows = $stmt->fetchAll();
 } catch (Exception $e) {
@@ -55,7 +56,7 @@ $data = $google_JSON.implode(",",$google_JSON_rows)."]}";
 	</script>
 	</head>
 	<body>
-		<h1>Capture frequenzy - Apo 2014</h1>
+		<h1>Capture frequenzy - Apo 2015</h1>
 		<div id="chart_div" style="width: 900px; height: 500px;"></div>
 	</body>
 </html>
