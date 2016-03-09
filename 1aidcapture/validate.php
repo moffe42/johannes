@@ -21,7 +21,7 @@ class Validate
     public function validate1Aidcode($aidcode)
     {
         // Validate syntax
-        if (preg_match('/^4\d{2}\d{5}$/', $aidcode) !== 1 ) {
+        if (preg_match('/^4\d{8}$/', $aidcode) !== 1 ) {
             return NOTVALID;
         }
 
@@ -45,7 +45,7 @@ class Validate
 
     public function validateSjakid($sjakid) {
         // Validate syntax
-        if (preg_match('/^2\d{2}$/', $sjakid) !== 1 ) {
+        if (preg_match('/^\d{4}$/', $sjakid) !== 1 ) {
             return NOTVALID;
         }
 
