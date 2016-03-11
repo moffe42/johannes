@@ -13,9 +13,11 @@ $hidden   = false;
 // Parse sjakid
 if (isset($_GET['sid'])) {
     $sjakid = $_GET['sid'];
-} else if (isset($_SESSION['sjakid'])) {
+} else if (isset($_SESSION['sjakid']) & $ssi == 0) {
     $sjakid = $_SESSION['sjakid'];
 }
+
+$sjakShowId = isset($_GET['ssi']) ? $_GET['ssi'] : 0;
 
 // Grab info from DB
 $dbh = new PDO($config['db.dsn'], $config['db.user'], $config['db.pass'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"));
@@ -34,7 +36,7 @@ $sjakname = $row['name'];
   </head>
   <body>
     <?php
-    if (!empty($sjakname)) {
+    if (!empty($sjakname) & $sjakShowId == 0) {
       echo "<h2>{$sjakname}</h2>";
     }
     ?>
@@ -43,13 +45,18 @@ $sjakname = $row['name'];
       Ting kode 1: <input type="number" name="objectcode[]" size="9" maxlength="9" />
       Ting kode 2: <input type="number" name="objectcode[]" size="9" maxlength="9" />
       Ting kode 3: <input type="number" name="objectcode[]" size="9" maxlength="9" />
+      Ting kode 4: <input type="number" name="objectcode[]" size="9" maxlength="9" />
+      Ting kode 5: <input type="number" name="objectcode[]" size="9" maxlength="9" />
       <?php
-      if ($sjakid > 0) {
+      if ($sjakid > 0 & $sjakShowId == 0) {
         echo "<input type='hidden' name='sjakid' value='{$sjakid}'>";
+      } elseif ($sjakid > 0) {
+        echo "Sjak kode: <input type='number' name='sjakid' value='{$sjakid}'>";
       } else {
         echo "Sjak kode: <input type='number' name='sjakid'>";
       }
       ?>
+      <input type="hidden" name="ssi" value="<?=$sjakShowId?>">
       <input type="submit" value="Send Registrering"/>
     </form>
   <?

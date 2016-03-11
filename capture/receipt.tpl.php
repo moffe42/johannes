@@ -22,6 +22,6 @@
     }
     ?>
     <br><br>
-    <p><a href="index.php">Videre</a></p>
+    <p><a href="index.php?sjakid=<?=$sjakid?>&ssi=<?=$sjakShowId?>">Videre</a></p>
   </body>
 </html>

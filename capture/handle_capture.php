@@ -17,6 +17,7 @@ try {
 $error = array();
 
 try{
+    $sjakShowId = $_POST['ssi'];
     // Initialize validator
     $validate = new Validate($dbh);
 
