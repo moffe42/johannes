@@ -36,11 +36,11 @@ try {
 		loginView($sjakdata);
 	}
 
-    $stmt = $dbh->prepare("SELECT cl.*, s.name, s.count FROM `capturelog` cl JOIN `scout` s ON cl.scoutid = s.id WHERE cl.sjakid = ? ORDER BY cl.time DESC;");
+    $stmt = $dbh->prepare("SELECT cl.*, s.name, s.count FROM `capturelog` cl JOIN `scout` s ON cl.scoutid = s.id WHERE cl.sjakid = ? ORDER BY cl.time ASC;");
     $stmt->execute(array($sjakid));
     $captures = $stmt->fetchAll();
 
-    $stmt = $dbh->prepare("SELECT ol.*, s.name AS scoutname, o.name AS objectname FROM `objectlog` ol JOIN `scout` s ON ol.scoutid = s.id JOIN `object` o ON ol.objectid = o.id  WHERE ol.sjakid = ? ORDER BY ol.time DESC;");
+    $stmt = $dbh->prepare("SELECT ol.*, s.name AS scoutname, o.name AS objectname FROM `objectlog` ol JOIN `scout` s ON ol.scoutid = s.id JOIN `object` o ON ol.objectid = o.id WHERE ol.sjakid = ? ORDER BY ol.time ASC;");
     $stmt->execute(array($sjakid));
     $objects = $stmt->fetchAll();
 } catch (Exception $e) {
@@ -86,24 +86,24 @@ echo '<table border="1" class="content">';
 echo '<thead>';
 echo '<tr>';
 echo "<th>Tid</th>";
-#echo "<td>code</td>";
+echo "<td>code</td>";
 #echo "<td>scoutid</td>";
 #echo "<td>sjakid</td>";
 #echo "<td>used</td>";
 echo "<th>Patrulje</th>";
-echo "<th>Antal</th>";
+#echo "<th>Antal</th>";
 #echo "<th>User Agent</t>";
 echo '</tr>';
 echo '</thead>';
 foreach ($captures AS $row) {
     echo '<tr>';
     echo "<td>{$row['time']}</td>";
-#echo "<td>{$row['code']}</td>";
+    echo "<td>{$row['code']}</td>";
 #    echo "<td>{$row['scoutid']}</td>";
 #   echo "<td>{$row['sjakid']}</td>";
 #   echo "<td>{$row['used']}</td>";
     echo "<td>{$row['name']}</td>";
-    echo "<td>{$row['count']}</td>";
+#    echo "<td>{$row['count']}</td>";
 #    echo "<td>{$row['useragent']}</td>";
     echo '</tr>';
 }
