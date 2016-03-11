@@ -78,15 +78,15 @@ echo<<<EOT
     </style>
   </head>
   <body>
-	<h2>Sjakstatus - {$sjakdata['name']}</h2>
+	<h2 align="center">Sjakstatus - {$sjakdata['name']}</h2>
 EOT;
 echo '<br />';
 echo '<p>Patruljer</p>';
-echo '<table border="1" class="content">';
+echo '<table class="content">';
 echo '<thead>';
 echo '<tr>';
 echo "<th>Tid</th>";
-echo "<td>code</td>";
+echo "<th>Kode</th>";
 #echo "<td>scoutid</td>";
 #echo "<td>sjakid</td>";
 #echo "<td>used</td>";
@@ -122,7 +122,7 @@ echo '</thead>';
 foreach ($objects AS $row) {
     echo '<tr>';
     echo "<td>{$row['time']}</td>";
-    echo "<td>{$row['objectname']}</td>";
+    echo "<td>{$row['objectname']}({$row['code']})</td>";
     echo "<td>{$row['scoutname']}</td>";
     echo '</tr>';
 }
