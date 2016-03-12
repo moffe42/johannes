@@ -112,8 +112,8 @@ try {
 							?>
 							<tr>
 								<td><?=$row['time'] ?></td>
-								<td><?=$row['scout'] ?> (<?=$row['scout_count']?>)</td>
-								<td><?=$row['sjak'] ?> (<?=$row['sjak_count']?>)</td>
+								<td><?=$row['scout'] ?></td>
+								<td><?=$row['sjak'] ?></td>
 							</tr>
 							<?php
 							endforeach;
