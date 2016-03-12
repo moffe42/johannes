@@ -1,5 +1,4 @@
 <?php
-die('dd');
 // Include config
 require_once('../config/config.php');
 try {
@@ -15,7 +14,7 @@ try {
 	// Grab sjak info
 	$stmt = $dbh->prepare('SELECT day(time) as day, hour(time) AS hour, count(*)
 	        AS `count` FROM objectlog WHERE used = 1 AND DATE(time) IN
-	        ("2015-03-20","2015-03-21", "2015-03-22") GROUP BY day(time), hour(`time`);');
+	        ("2016-03-11","2016-03-12", "2016-03-13") GROUP BY day(time), hour(`time`);');
 	$stmt->execute();
 	$rows = $stmt->fetchAll();
 } catch (Exception $e) {
@@ -29,7 +28,7 @@ foreach ($rows AS $row) {
 		$google_JSON_cols[]="{id: '1', label: 'Registrations', type: 'number'}";
 		$google_JSON .= implode(",",$google_JSON_cols)."],rows: [";
 	}
-	$google_JSON_rows[] = "{c:[{v: new Date(2013, 2,{$row['day']},{$row['hour']})}, {v: ".$row['count']."}]}";
+	$google_JSON_rows[] = "{c:[{v: new Date(2016, 2,{$row['day']},{$row['hour']})}, {v: ".$row['count']."}]}";
 }
 // you may need to change the above into a function that loops through rows, with $r['id'] etc, referring to the fields you want to inject..
 $data = $google_JSON.implode(",",$google_JSON_rows)."]}";
@@ -56,7 +55,7 @@ $data = $google_JSON.implode(",",$google_JSON_rows)."]}";
 	</script>
 	</head>
 	<body>
-		<h1>Capture frequenzy - Apo 2015</h1>
+		<h1>Capture frequenzy - Apo 2016</h1>
 		<div id="chart_div" style="width: 900px; height: 500px;"></div>
 	</body>
 </html>
