@@ -79,12 +79,13 @@ if (!empty($error)) {
 try {
     $dbh->beginTransaction();
 
+    $scoutid = substr($scoutcode, 0, 4);
+
     // Register captured scout patrole
-    $stmt = $dbh->prepare("UPDATE `capturelog` SET `sjakid` = ?, `used` = 1, `time` = now(), `useragent` = ? WHERE `code` = ?;");
-    $stmt->execute(array($sjakid, $_SERVER['HTTP_USER_AGENT'], $scoutcode));
+    $stmt = $dbh->prepare("UPDATE `capturelog` SET `sjakid` = ?, `scoutid` = ?, `used` = 1, `time` = now(), `useragent` = ? WHERE `code` = ?;");
+    $stmt->execute(array($sjakid, $scoutid, $_SERVER['HTTP_USER_AGENT'], $scoutcode));
 
     // Register objects found
-    $scoutid = substr($scoutcode, 0, 4);
     foreach ($objects AS $object) {
         $stmt = $dbh->prepare("UPDATE `objectlog` SET `sjakid` = ?, `scoutid` = ?, `used` = 1, `time` = now(), `useragent` = ? WHERE `code` = ?;");
         $stmt->execute(array($sjakid, $scoutid, $_SERVER['HTTP_USER_AGENT'], $object['code']));
