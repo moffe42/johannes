@@ -87,8 +87,8 @@ try {
 
     // Register objects found
     foreach ($objects AS $object) {
-        $stmt = $dbh->prepare("UPDATE `objectlog` SET `sjakid` = ?, `scoutid` = ?, `used` = 1, `time` = now(), `useragent` = ? WHERE `code` = ?;");
-        $stmt->execute(array($sjakid, $scoutid, $_SERVER['HTTP_USER_AGENT'], $object['code']));
+        $stmt = $dbh->prepare("UPDATE `objectlog` SET `objectid` = ?, `sjakid` = ?, `scoutid` = ?, `used` = 1, `time` = now(), `useragent` = ? WHERE `code` = ?;");
+        $stmt->execute(array($object['id'], $sjakid, $scoutid, $_SERVER['HTTP_USER_AGENT'], $object['code']));
     }
     // Commit updates
     $dbh->commit();
