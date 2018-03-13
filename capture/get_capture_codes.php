@@ -16,7 +16,6 @@ echo "<pre>";
  * De sidste 5 er random
  */
 foreach ($res as $scout) {
-	var_dump($scout);
 	$randomCode = rand(10000, 89999);
 	$stmt2 = $dbh->prepare('INSERT INTO capturelog (code, scoutid) VALUES (:code, :scoutid)');
 
@@ -28,6 +27,6 @@ foreach ($res as $scout) {
 		} catch (Exception $e) {
 			var_dump($e); exit;
 		}
-		echo "Insert\n";
 	}
+	echo "Added 100 capture codes for {$scout['name']} id={$scout['id']}" . PHP_EOL;
 }
