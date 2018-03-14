@@ -28,6 +28,6 @@ foreach ($res as $object) {
 			var_dump($e); exit;
 		}
 	}
-	echo "Added 10 capture codes for {$object['name']} id={$object['id']}" . PHP_EOL;
+	echo "Added 40 capture codes for {$object['name']} id={$object['id']}" . PHP_EOL;
 }
 
