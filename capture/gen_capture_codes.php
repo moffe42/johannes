@@ -19,7 +19,7 @@ foreach ($res as $scout) {
 	$randomCode = rand(10000, 89999);
 	$stmt2 = $dbh->prepare('INSERT INTO capturelog (code, scoutid) VALUES (:code, :scoutid)');
 
-	for ($i = 0; $i < 100; $i++) {
+	for ($i = 0; $i < 50; $i++) {
 		$randomCode = $randomCode + rand(1, 10);
 		$code = "{$scout['id']}{$randomCode}";
 		try {
@@ -28,5 +28,5 @@ foreach ($res as $scout) {
 			var_dump($e); exit;
 		}
 	}
-	echo "Added 100 capture codes for {$scout['name']} id={$scout['id']}" . PHP_EOL;
+	echo "Added 50 capture codes for {$scout['name']} id={$scout['id']}" . PHP_EOL;
 }
