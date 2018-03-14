@@ -4,6 +4,10 @@ error_reporting(-1);
 require_once('../config/config.php');
 require_once('database.php');
 
+if ($_GET['gogo'] !== 'yes' ) {
+	die('Add ?gogo=yes to generate codes');
+}
+
 $stmt = $dbh->prepare('SELECT * FROM scout');
 $stmt->execute();
 $res = $stmt->fetchAll();

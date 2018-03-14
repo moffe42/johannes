@@ -2,7 +2,11 @@
 session_start();
 error_reporting(-1);
 // Include
-require_once('config.php');
+require_once('../config/config.php');
+	
+if ($_GET['gogo'] !== 'yes' ) {
+	die('Add ?gogo=yes to reset');
+}
 
 try {
     // Initialize DB
