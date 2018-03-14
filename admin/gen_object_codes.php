@@ -2,12 +2,13 @@
 error_reporting(-1);
 
 require_once('../config/config.php');
-require_once('validate.php');
 require_once('database.php');
 
 $stmt = $dbh->prepare('SELECT * FROM object');
 $stmt->execute();
 $res = $stmt->fetchAll();
+
+$codeCount = $_GET['cc'];
 
 echo "<pre>";
 /**
@@ -19,7 +20,7 @@ foreach ($res as $object) {
 	$randomCode = rand(100000, 899999);
 	$stmt2 = $dbh->prepare('INSERT INTO objectlog (code, objectid) VALUES (:code, :objectid)');
 
-	for ($i = 0; $i < 40; $i++) {
+	for ($i = 0; $i < $codeCount; $i++) {
 		$randomCode = $randomCode + rand(1, 10);
 		$code = "{$object['id']}{$randomCode}";
 		try {
@@ -28,6 +29,6 @@ foreach ($res as $object) {
 			var_dump($e); exit;
 		}
 	}
-	echo "Added 40 capture codes for {$object['name']} id={$object['id']}" . PHP_EOL;
+	echo "Added {$codeCount} object codes for {$object['name']} id={$object['id']}" . PHP_EOL;
 }
 

@@ -2,12 +2,13 @@
 error_reporting(-1);
 
 require_once('../config/config.php');
-require_once('validate.php');
 require_once('database.php');
 
 $stmt = $dbh->prepare('SELECT * FROM scout');
 $stmt->execute();
 $res = $stmt->fetchAll();
+
+$codeCount = $_GET['cc'];
 
 echo "<pre>";
 /**
@@ -19,7 +20,7 @@ foreach ($res as $scout) {
 	$randomCode = rand(10000, 89999);
 	$stmt2 = $dbh->prepare('INSERT INTO capturelog (code, scoutid) VALUES (:code, :scoutid)');
 
-	for ($i = 0; $i < 50; $i++) {
+	for ($i = 0; $i < $codeCount; $i++) {
 		$randomCode = $randomCode + rand(1, 10);
 		$code = "{$scout['id']}{$randomCode}";
 		try {
@@ -28,5 +29,5 @@ foreach ($res as $scout) {
 			var_dump($e); exit;
 		}
 	}
-	echo "Added 50 capture codes for {$scout['name']} id={$scout['id']}" . PHP_EOL;
+	echo "Added {$codeCount} capture codes for {$scout['name']} id={$scout['id']}" . PHP_EOL;
 }
